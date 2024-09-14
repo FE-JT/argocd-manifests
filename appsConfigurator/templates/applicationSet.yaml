@@ -7,13 +7,13 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: {{ $.Values.global.repo }}
-      revision: "{{ $.Values.global.branch }}
+      repoURL: "{{ $.Values.global.repo }}"
+      revision: "{{ $.Values.global.branch }}"
       directories:
       - path: "{{ . }}/*"
   template:
     metadata:
-      name: "{{'{{ path.basename }}'}}"
+      name: "{{ path.basename }}"
     spec:
       project: default
       syncPolicy:
@@ -25,7 +25,7 @@ spec:
       source:
         repoURL: "{{ $.Values.global.repo }}"
         targetRevision: "{{ $.Values.global.branch }}"
-        path: "{{'{{ path }}'}}"
+        path: "{{ path }}"
         helm:
           valueFiles:
             - values.yaml

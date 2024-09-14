@@ -13,9 +13,9 @@ spec:
       - path: "{{ . }}/*"
   template:
     metadata:
-      name: "{{ path.basename }}"
+      name: "{{`{{ path.basename }}`}}"
     spec:
-      project: default
+      project: argocd-scale
       syncPolicy:
         automated:
           prune: true
@@ -25,11 +25,11 @@ spec:
       source:
         repoURL: "{{ $.Values.global.repo }}"
         targetRevision: "{{ $.Values.global.branch }}"
-        path: "{{ path }}"
+        path: "{{`{{ path }}`}}"
         helm:
           valueFiles:
             - values.yaml
-            - ../globalValues.yaml
+            - ../../globalValues.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: "argo-{{ . }}"

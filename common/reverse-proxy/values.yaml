@@ -14,7 +14,7 @@ service:
 instances:
   - name: minio-console
     enabled: true
-    ip: 10.48.64.12
+    ip: 10.48.64.13
     port: 9003
     ingress:
       annotations:
@@ -33,7 +33,7 @@ instances:
 
   - name: minio
     enabled: true
-    ip: 10.48.64.12
+    ip: 10.48.64.13
     port: 9001
     ingress:
       annotations:

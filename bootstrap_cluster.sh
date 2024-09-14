@@ -20,6 +20,8 @@
 ##############################################################################################################
 
 CLUSTER_IP="10.48.64.12"
+GITHUB_USER=$GITHUB_USER
+GITHUB_TOKEN=$GITHUB_TOKEN
 
 # Check if helm is installed and install if missing
 if ! command -v helm &> /dev/null
@@ -34,6 +36,13 @@ then
     echo "ArgoCD helm repo not found. Adding ArgoCD helm repo..."
     helm repo add argo https://argoproj.github.io/argo-helm
 fi
+
+kubectl create namespace argocd
+
+kubectl create secret generic git-creds \
+  --namespace argocd \
+  --from-literal=username=$GITHUB_USER \
+  --from-literal=password=$GITHUB_TOKEN
 
 # Install ArgoCD using helm
 helm dependency update argocd

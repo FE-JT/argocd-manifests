@@ -72,3 +72,5 @@ kubectl apply -f argocd/templates/in-cluster-secret.yaml
 
 # Print the generated password to the console
 echo "ArgoCD admin password: $ARGOCD_PASSWORD"
+
+helm template appsconfigurator ./ --values ./values.yaml --values ../globalValues.yaml > rendered-appsconfigurator.yaml

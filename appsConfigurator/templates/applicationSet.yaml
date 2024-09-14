@@ -29,7 +29,7 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - ../../globalValues.yaml
+            - ../globalValues.yaml
       destination:
         server: https://kubernetes.default.svc
         namespace: "argo-{{ . }}"

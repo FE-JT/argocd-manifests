@@ -6,11 +6,11 @@ argo-cd:
       # traefik terminates TLS at edge
       server.insecure: true
     cm:
-      url: 'https://argocd.wavebe.am'
+      url: 'https://argocd.xwcs.io'
 
   server:
     certificate:
-      domain: argocd.wavebe.am
+      domain: argocd.xwcs.io
     ingress:
       enabled: true
       ingressClassName: traefik
@@ -20,11 +20,11 @@ argo-cd:
         cert-manager.io/cluster-issuer: letsencrypt-production
         cert-manager.io/revision-history-limit: '1'
       tls: true
-      hostname: argocd.wavebe.am
+      hostname: argocd.xwcs.io
 
   notifications:
-    argocdUrl: 'https://argocd.wavebe.am'
+    argocdUrl: 'https://argocd.xwcs.io'
   
   applicationSet:
     certificate:
-      domain: argocd.wavebe.am
+      domain: argocd.xwcs.io

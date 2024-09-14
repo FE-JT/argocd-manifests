@@ -1,1 +1,2 @@
-
+# ignore any file with unsealed in it
+*unsealed*

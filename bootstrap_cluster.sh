@@ -59,9 +59,16 @@ argocd login $CLUSTER_IP:$ARGOCD_HTTPS_PORT --username admin --password $ARGOCD_
 GIT_USERNAME=$(kubectl get secret git-creds -n argocd -o jsonpath="{.data.username}" | base64 -d; echo)
 GIT_TOKEN=$(kubectl get secret git-creds -n argocd -o jsonpath="{.data.password}" | base64 -d; echo)
 
+# Configure ArgoCD to use the GitHub repo
 argocd repo add https://github.com/FE-JT/argocd-manifests.git \
   --username $GIT_USERNAME \
   --password $GIT_TOKEN
+
+# Deploy the app of apps
+kubectl apply -f argocd/templates/appsConfigurator-application.yaml
+
+# Deploy the in cluster secrets
+kubectl apply -f argocd/templates/in-cluster-secret.yaml
 
 # Print the generated password to the console
 echo "ArgoCD admin password: $ARGOCD_PASSWORD"

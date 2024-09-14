@@ -5,14 +5,14 @@ metadata:
   name: appsconfigurator
   namespace: argocd
 spec:
-  project: argocd-scale
+  project: default
   syncPolicy:
     automated:
       prune: false
       selfHeal: true
   source:
-    repoURL: {{ $.Values.global.repo }}
-    targetRevision: {{ $.Values.global.branch }}
+    repoURL: "{{ .Values.global.repo }}"
+    targetRevision: "{{ $.Values.global.branch }}"
     path: appsConfigurator
     helm:
       valueFiles:

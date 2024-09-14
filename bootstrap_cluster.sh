@@ -46,6 +46,10 @@ kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -
 # Expose ArgoCD server
 echo "Exposing ArgoCD server..."
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}' &
+
+# Wait for the service to be exposed
+echo "Waiting for the service to be exposed..."
+kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
 ARGOCD_HTTPS_PORT=$(kubectl get svc argocd-server -n argocd -o jsonpath='{.spec.ports[?(@.port==443)].nodePort}')
 echo "ArgoCD server exposed at https://$CLUSTER_IP:$ARGOCD_HTTPS_PORT"
 

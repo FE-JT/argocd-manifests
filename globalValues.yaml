@@ -1,0 +1,22 @@
+global:
+  repo: https://github.com/FE-JT/argocd-manifests.git
+  branch: main
+  domain: xwcs.io
+  altDomainHome: xwcs.house
+  # altDomainDev: deserialize.net
+  # altDomainRe: fi.re
+  TZ: America/Los_Angeles
+
+  # applicationSets:
+  # - common
+  # - media
+  # - home
+  # - monitoring
+    
+  storage:
+    pools: 
+      argo-zfspv-fast: ssd/argocd/pv
+      argo-zfspv-slow: cargoBay/argocd/pv
+
+  metallb:
+    defaultPool: 10.48.46.200-10.48.46.254

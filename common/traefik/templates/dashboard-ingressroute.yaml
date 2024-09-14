@@ -10,8 +10,8 @@ spec:
   routes:
     - kind: Rule
       match: Host(`traefik.{{ .Values.global.domain }}`)
-      middlewares:
-        - name: dashboard-auth
+      # middlewares:
+      #   - name: dashboard-auth
       priority: 10
       services:
         - kind: TraefikService

@@ -46,7 +46,7 @@ kubectl create secret generic git-creds \
 
 # Install ArgoCD using helm
 helm dependency update argocd
-helm upgrade --install argocd argo/argo-cd -n argocd --create-namespace --wait --timeout 120s --values globalValues.yaml
+helm upgrade --install argocd argocd -n argocd --create-namespace --wait --timeout 120s --values globalValues.yaml
 
 # Wait for ArgoCD to be ready
 echo "Waiting for ArgoCD to be ready..."

@@ -11,8 +11,9 @@ GitOps deployment for an app of apps model
 
 ### Allow kubectl traffic
   1. On truenas run `sudo iptables -I INPUT 4 -p tcp -s 10.48.64.0/24 --dport 6443 -j ACCEPT`
-    - Replace `10.48.64.0/24` with the cidr range of your local machine
-    - Note: This will not persist across reboots
+
+  - Replace `10.48.64.0/24` with the cidr range of your local machine
+  - Note: This will not persist across reboots
 
 Test the connection with `kubectl get nodes`
 

@@ -11,8 +11,8 @@ spec:
       prune: false
       selfHeal: true
   source:
-    repoURL: https://github.com/FE-JT/argocd-manifests.git
-    targetRevision: main
+    repoURL: {{ $.Values.global.repo }}
+    targetRevision: {{ $.Values.global.branch }}
     path: appsConfigurator
     helm:
       valueFiles:

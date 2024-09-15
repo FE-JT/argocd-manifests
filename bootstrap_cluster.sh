@@ -37,12 +37,12 @@ then
     helm repo add argo https://argoproj.github.io/argo-helm
 fi
 
-kubectl create namespace argocd
+# kubectl create namespace argocd
 
-kubectl create secret generic git-creds \
-  --namespace argocd \
-  --from-literal=username=$GITHUB_USERNAME \
-  --from-literal=password=$GITHUB_TOKEN
+# kubectl create secret generic git-creds \
+#   --namespace argocd \
+#   --from-literal=username=$GITHUB_USERNAME \
+#   --from-literal=password=$GITHUB_TOKEN
 
 # Install ArgoCD using helm
 helm dependency update argocd
@@ -56,11 +56,11 @@ kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -
 echo "Exposing ArgoCD server..."
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 
-# Wait for the service to be exposed
-echo "Waiting for the service to be exposed..."
+# Wait for the service to be deployed
+echo "Waiting for the service to be deployed..."
 kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -n argocd
-ARGOCD_HTTPS_PORT=$(kubectl get svc argocd-server -n argocd -o jsonpath='{.spec.ports[?(@.port==443)].nodePort}')
-echo "ArgoCD server exposed at https://$CLUSTER_IP:$ARGOCD_HTTPS_PORT"
+# ARGOCD_HTTPS_PORT=$(kubectl get svc argocd-server -n argocd -o jsonpath='{.spec.ports[?(@.port==443)].nodePort}')
+# echo "ArgoCD server exposed at https://$CLUSTER_IP:$ARGOCD_HTTPS_PORT"
 
 # Gather the argocd admin user password
 ARGOCD_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode; echo)
@@ -77,13 +77,13 @@ argocd repo add https://github.com/FE-JT/argocd-manifests.git \
   --username $GITHUB_USERNAME \
   --password $GITHUB_TOKEN
 
-# Deploy the app of apps
-kubectl apply -f argocd/templates/appsConfigurator-application.yaml
+# # Deploy the app of apps
+# kubectl apply -f argocd/templates/appsConfigurator-application.yaml
 
-# Deploy the in cluster secrets
-kubectl apply -f argocd/templates/in-cluster-secret.yaml
+# # Deploy the in cluster secrets
+# kubectl apply -f argocd/templates/in-cluster-secret.yaml
 
 # Print the generated password to the console
 echo "ArgoCD admin password: $ARGOCD_PASSWORD"
 
-helm template appsconfigurator ./ --values ./values.yaml --values ../globalValues.yaml > rendered-appsconfigurator.yaml
+# helm template appsconfigurator ./ --values ./values.yaml --values ../globalValues.yaml > rendered-appsconfigurator.yaml

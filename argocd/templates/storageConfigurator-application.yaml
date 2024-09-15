@@ -11,8 +11,8 @@ spec:
       prune: false
       selfHeal: true
   source:
-    repoURL: '{{ $.Values.global.repo }}'
-    targetRevision: '{{ $.Values.global.branch }}'
+    repoURL: https://github.com/FE-JT/argocd-manifests.git
+    targetRevision: main
     path: storageConfigurator
     helm:
       valueFiles:

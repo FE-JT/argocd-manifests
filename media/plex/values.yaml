@@ -38,7 +38,7 @@ controllers:
               failureThreshold: 3
               periodSeconds: 30
               tcpSocket:
-                port: 32400
+                port: 32404
           readiness:
             enabled: true
             custom: true

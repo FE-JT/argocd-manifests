@@ -4,15 +4,14 @@ metadata:
   name: letsencrypt-production
 spec:
   acme:
-    email: 'svc+letsencrypt-prod@{{ $.Values.global.domain }}'
-    # server: https://acme-v02.api.letsencrypt.org/directory
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: 'svc@{{ $.Values.global.domain }}'
+    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: leprod-issuer-account-key
     solvers:
     - dns01:
         cloudflare:
-          email: 'svc+letsencrypt-prod@{{ $.Values.global.domain }}'
+          email: 'svc@{{ $.Values.global.domain }}'
           apiTokenSecretRef:
             name: cloudflare-api-token
             key: api-token

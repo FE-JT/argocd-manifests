@@ -3,15 +3,11 @@ global:
   branch: main
   domain: xwcs.io
   altDomainHome: xwcs.house
-  # altDomainDev: deserialize.net
-  # altDomainRe: fi.re
   TZ: America/Los_Angeles
 
   applicationSets:
   - common
   # - media
-  # - home
-  # - monitoring
     
   storage:
     pools: 

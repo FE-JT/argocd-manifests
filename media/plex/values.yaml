@@ -21,7 +21,7 @@ controllers:
 
         resources:
           requests:
-            nvidia.com/gpu: 1
+            # nvidia.com/gpu: 1
             cpu: 200m
             memory: 1024Mi
           # limits:

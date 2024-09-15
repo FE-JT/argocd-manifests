@@ -68,7 +68,7 @@ service:
       http:
         port: 32400
         protocol: TCP
-        nodePort: 32404
+        nodePort: 32400
     externalTrafficPolicy: Local
   # DLNA UDP: 1900, TCP: 32469 (disabled)
   #dlna:

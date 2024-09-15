@@ -20,7 +20,7 @@
 ##############################################################################################################
 
 CLUSTER_IP="10.48.64.12"
-GITHUB_USER=$GITHUB_USER
+GITHUB_USERNAME=$GITHUB_USERNAME
 GITHUB_TOKEN=$GITHUB_TOKEN
 
 # Check if helm is installed and install if missing
@@ -41,7 +41,7 @@ kubectl create namespace argocd
 
 kubectl create secret generic git-creds \
   --namespace argocd \
-  --from-literal=username=$GITHUB_USER \
+  --from-literal=username=$GITHUB_USERNAME \
   --from-literal=password=$GITHUB_TOKEN
 
 # Install ArgoCD using helm
@@ -68,14 +68,14 @@ ARGOCD_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o js
 # Log into argocd
 argocd login $CLUSTER_IP:$ARGOCD_HTTPS_PORT --username admin --password $ARGOCD_PASSWORD --insecure
 
-# Gather the GitHub username and access token
-GIT_USERNAME=$(kubectl get secret git-creds -n argocd -o jsonpath="{.data.username}" | base64 -d; echo)
-GIT_TOKEN=$(kubectl get secret git-creds -n argocd -o jsonpath="{.data.password}" | base64 -d; echo)
+# # Gather the GitHub username and access token
+# GIT_USERNAME=$(kubectl get secret git-creds -n argocd -o jsonpath="{.data.username}" | base64 -d; echo)
+# GIT_TOKEN=$(kubectl get secret git-creds -n argocd -o jsonpath="{.data.password}" | base64 -d; echo)
 
 # Configure ArgoCD to use the GitHub repo
 argocd repo add https://github.com/FE-JT/argocd-manifests.git \
-  --username $GIT_USERNAME \
-  --password $GIT_TOKEN
+  --username $GITHUB_USERNAME \
+  --password $GITHUB_TOKEN
 
 # Deploy the app of apps
 kubectl apply -f argocd/templates/appsConfigurator-application.yaml

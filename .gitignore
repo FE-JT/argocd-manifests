@@ -1,2 +1,6 @@
-# ignore any file with unsealed in it
+# secrets in the clear
 *unsealed*
+
+# charts
+charts/
+Chart.lock

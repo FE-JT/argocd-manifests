@@ -8,7 +8,7 @@ global:
   TZ: America/Los_Angeles
 
   applicationSets:
-  - common
+  # - common
   # - media
   # - home
   # - monitoring

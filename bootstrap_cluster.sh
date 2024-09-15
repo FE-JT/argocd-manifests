@@ -54,7 +54,7 @@ kubectl wait --for=condition=available --timeout=300s deployment/argocd-server -
 
 # Expose ArgoCD server
 echo "Exposing ArgoCD server..."
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}' &
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 
 # Wait for the service to be exposed
 echo "Waiting for the service to be exposed..."

@@ -7,7 +7,6 @@ global:
 
   applicationSets:
   - common
-  - media
     
   storage:
     pools: 

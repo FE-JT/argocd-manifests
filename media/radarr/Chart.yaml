@@ -1,4 +1,4 @@
-name: plex
+name: radarr
 apiVersion: v2
 version: 3.0.0
 dependencies:
